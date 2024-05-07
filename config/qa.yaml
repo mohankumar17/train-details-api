@@ -1,0 +1,10 @@
+http:
+  host: "localhost"
+  port: "8082"
+
+ibm:
+  cloudantDB:
+    host: ""
+    basePath: ""
+    username: ""
+    password: ""
