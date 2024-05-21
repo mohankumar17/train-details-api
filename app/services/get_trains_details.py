@@ -1,14 +1,14 @@
-from app.config import Config
+from flask import current_app
 import requests
 
 from app.utils.custom_exception import TRAIN_NOT_FOUND
 
 def get_trains_source_system(trainId):
 
-    host = Config.DB_HOST
-    basepath = Config.DB_BASEPATH
-    username = Config.DB_USERNAME
-    password = Config.DB_PASSWORD
+    host = current_app.config.get("DB_HOST")
+    basepath = current_app.config.get("DB_BASEPATH")
+    username = current_app.config.get("DB_USERNAME")
+    password = current_app.config.get("DB_PASSWORD")
 
     req_body = {
         "fields": [

@@ -1,7 +1,6 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, current_app
 import time
 import uuid
-from app.config import Config
 
 from app.utils.custom_exception import TRAIN_NOT_FOUND, MIMETYPE_NOT_SUPPORTED
 from app.services.get_trains_details import get_train_details
@@ -9,7 +8,6 @@ from app.services.upsert_train_details import upsert_train_details
 from app.services.delete_train_details import delete_train_details
 
 train_details_bp = Blueprint('train_details', __name__)
-logger = Config.logger
 
 # Routers
 @train_details_bp.get("/api/trains/<trainId>")
@@ -40,7 +38,7 @@ def error_response(errorDetails):
         "dateTime": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.localtime()),
         "transactionId": str(uuid.uuid4())
     }
-    logger.error(error_response)
+    current_app.logger.error(error_response)
     return error_response
 
 @train_details_bp.errorhandler(Exception)

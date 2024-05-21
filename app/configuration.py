@@ -1,5 +1,4 @@
 import yaml
-import logging
 
 class Config:
     with open("config/dev.yaml") as config_file:
@@ -12,6 +11,3 @@ class Config:
     DB_BASEPATH = properties["ibm"]["cloudantDB"]["basePath"]
     DB_USERNAME = properties["ibm"]["cloudantDB"]["username"]
     DB_PASSWORD = properties["ibm"]["cloudantDB"]["password"]
-
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
